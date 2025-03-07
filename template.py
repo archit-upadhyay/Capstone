@@ -18,8 +18,6 @@ list_of_files = [
     f"src/{project_name}/api/__init__.py",
     f"src/{project_name}/api/routes.py",
     f"src/{project_name}/api/schemas.py",
-    f"src/{project_name}/frontend/templates/index.html",
-    f"src/{project_name}/frontend/static/app.js",
     f"src/{project_name}/pipeline/__init__.py",
     f"src/{project_name}/pipeline/train_pipeline.py",
     f"src/{project_name}/pipeline/inference_pipeline.py",
@@ -45,6 +43,7 @@ list_of_files = [
     "requirements.txt",
     "setup.py",
     "research/trails.ipynb",
+    "templates/index.html",
     "README.md",
     ".gitignore",
 ]
