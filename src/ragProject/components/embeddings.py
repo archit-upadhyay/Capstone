@@ -1,5 +1,5 @@
 from sentence_transformers import SentenceTransformer
-from config.configuration import JD_Text,resume_text,system_prompt
+from ..config.configuration import JD_Text,resume_text,system_prompt
 import pandas as pd
 
 # Load a pre-trained model

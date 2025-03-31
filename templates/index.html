@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAG Resume Review</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Resume Reviewer</title>
 </head>
 <body>
-    <h1>Resume Review System</h1>
-    <form action="/review" method="post">
-        <textarea name="resume_text" rows="10" cols="50" placeholder="Paste your resume here..."></textarea>
+    <h2>Upload Resume & Job Description</h2>
+    <form action="/review" method="post" enctype="multipart/form-data">
+        <label>Upload Resume:</label>
+        <input type="file" name="resume_file" accept=".txt,.pdf,.docx" required>
+        <br>
+        <label>Upload Job Description:</label>
+        <input type="file" name="jd_file" accept=".txt,.pdf,.docx" required>
+        <br>
         <button type="submit">Analyze</button>
     </form>
 </body>

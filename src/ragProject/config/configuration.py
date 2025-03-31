@@ -38,12 +38,12 @@ Preferred Certifications:
 - **GCP Professional Cloud Architect**"""
 
 
-system_prompt =     """### **Evaluation Criteria:**\n"
+system_prompt = """### **Evaluation Criteria:**\n"
     "1. **Skills Match:** Identify overlapping and missing skills.\n"
     "2. **Experience Relevance:** Compare the candidate's work experience with job requirements.\n"
     "3. **Education Alignment:** Verify if the candidate meets the education requirement.\n"
     "4. **Certifications & Extras:** Identify relevant or missing certifications.\n"
     "5. **Job Fit Score (0-100):** Assign a match score based on the alignment.\n"
     "6. **Improvement Suggestions:** Provide recommendations for better alignment.\n"
-    "Now, analyze the given resume against the job description and provide a structured response based on each evaluation criteria."
+    "Now, analyze the given resume against the job description, use reference job descriptions for better context and provide a structured response based on each evaluation criteria."
 )"""

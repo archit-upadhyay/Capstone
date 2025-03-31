@@ -1,0 +1,16 @@
+John Doe
+Email: johndoe@email.com
+
+Work Experience:
+- **Cloud Architect at AWS** (2018-Present)
+- Designed scalable cloud solutions for enterprise clients.
+- Led Kubernetes deployments for hybrid cloud systems.
+
+Skills:
+- **Cloud Computing, Kubernetes, Python, Terraform, AWS**
+
+Education:
+- **Master's in Computer Science, Stanford University**
+
+Certifications:
+- **AWS Certified Solutions Architect** 

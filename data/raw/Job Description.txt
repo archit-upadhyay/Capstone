@@ -1,0 +1,18 @@
+Job Title: Technical Program Manager - Cloud
+
+Responsibilities:
+- Lead cloud transformation projects for enterprise customers.
+- Manage cross-functional teams to deploy cloud-based architectures.
+
+Required Skills:
+- **GCP, AI/ML, Cloud Architecture, Kubernetes**
+- Experience with **multi-cloud environments**.
+
+Required Experience:
+- **4+ years in cloud program management**.
+
+Education:
+- **Bachelor’s degree or higher in Computer Science**.
+
+Preferred Certifications:
+- **GCP Professional Cloud Architect**

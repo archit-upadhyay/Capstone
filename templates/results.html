@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analysis Results</title>
-    <link rel="stylesheet" href="/staticcss//styles.css">
+    <title>Evaluation Summary</title>
 </head>
 <body>
-    <h1>Resume Analysis Results</h1>
+    <h2>Evaluation Summary</h2>
     <p>{{ result }}</p>
-    <a href="/">Go Back</a>
+
+    <h3>Ask a Follow-up Question</h3>
+    <form action="/followup" method="post">
+        <input type="hidden" name="evaluation_summary" value="{{ result | e }}">
+        <input type="hidden" name="resume_text" value="{{ resume_text | e }}">
+        <input type="hidden" name="jd_text" value="{{ jd_text | e }}">
+
+        <input type="text" name="question" placeholder="Ask a follow-up question..." required>
+        <button type="submit">Ask</button>
+    </form>
+
+    {% if result_followup %}
+        <h3>Follow-up Answer</h3>
+        <p>{{ result_followup }}</p>
+    {% endif %}
 </body>
 </html>

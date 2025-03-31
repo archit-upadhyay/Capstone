@@ -1,29 +1,9 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
-
-"""app = FastAPI()
-
-# Load Jinja2 templates from the "templates" folder
-templates = Jinja2Templates(directory="templates")
-
-@app.get("/", response_class=HTMLResponse)
-async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
-"""
-
-
-
-
-from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Request, Form, UploadFile, File
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from src.ragProject.pipeline.inference_pipeline import resume_reviewer  # Import your RAG inference pipeline
+import os
+from src.ragProject.components.llm import resume_review, followup  # Import RAG inference pipeline
 
 app = FastAPI()
 
@@ -38,19 +18,37 @@ async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/review", response_class=HTMLResponse)
-async def review_resume(request: Request, resume_text: str = Form(...)):
-    # Call the RAG pipeline for inference
-    result = resume_reviewer(resume_text)
+async def review_resume(request: Request, resume_file: UploadFile = File(...), jd_file: UploadFile = File(...)):
+    print("Received request to /review")
+    # Read uploaded files
+    resume_text = await resume_file.read()
+    jd_text = await jd_file.read()
     
-    return templates.TemplateResponse("results.html", {"request": request, "result": result})
+    # Convert bytes to string
+    resume_text = resume_text.decode("utf-8")
+    jd_text = jd_text.decode("utf-8")
 
-# Optional: API Endpoint for JSON response
-@app.post("/api/review")
-async def api_review(resume_text: str = Form(...)):
-    result = resume_reviewer(resume_text)
-    return {"analysis": result}
+    
+    # Call RAG inference pipeline
+    evaluation_summary = resume_review(resume_text, jd_text)
+    #print(evaluation_summary)
+    return templates.TemplateResponse("results.html", {"request": request, "result": evaluation_summary})
+
+@app.post("/followup", response_class=HTMLResponse)
+async def followup_question(request: Request, 
+                            question: str = Form(...),
+                            evaluation_summary: str = Form(...),
+                            resume_text: str = Form(...),
+                            jd_text: str=Form(...)
+                            ):
+    # Mock response - Replace with LLM call
+    #followup_response = f"AI Response to '{question}': This is a placeholder response."
+    print(followup_question)
+    followup_response = followup(question, evaluation_summary, resume_text, jd_text)
+    print(followup_response)
+
+    return templates.TemplateResponse("results.html", {"request": request, "result_followup": followup_response})
 
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
-
