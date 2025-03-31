@@ -4,14 +4,18 @@ import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from io import BytesIO
+import os
+
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 
 # S3 client initialization
 s3_client = boto3.client('s3')
 # Using Access Key and Secret Key in your Python script (not recommended for production)
 s3_client = boto3.client(
     's3',
-    aws_access_key_id='AKIAST2FMABP2ZIM4D7N',
-    aws_secret_access_key='gc2bTAwg0mTTbW93Ihk5lJmCtYhPOUeRvXSqUbnC',
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY
     region_name='us-east-1'  # Replace with your region
 )
 
